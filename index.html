@@ -22,8 +22,7 @@
       line-height: 1.6;
       min-height: 100vh;
       margin: 0;
-      /* Adjusted padding-bottom to accommodate the new contact bar */
-      padding-bottom: 120px; /* Increased space for contact bar */
+      padding-bottom: 120px;
       box-sizing: border-box;
       font-family: sans-serif;
       cursor: default;
@@ -34,20 +33,19 @@
       padding: 0 20px;
     }
     header {
-  padding: 40px 0;
-  text-align: center;
-  background: rgba(10, 15, 35, 0.6);
-  border-bottom: 2px solid rgba(255,255,255,0.1);
-  margin-bottom: 30px;
-  border-radius: 20px; /* Added this line for curved edges */
+      padding: 40px 0;
+      text-align: center;
+      background: rgba(10, 15, 35, 0.6);
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      margin-bottom: 30px;
+      border-radius: 20px;
     }
     .logo {
-      max-width: 250px; /* Adjusted max-width */
+      max-width: 250px;
       margin-bottom: 15px;
       filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-      /* Removed background, padding, border-radius */
       display: inline-block;
-      vertical-align: middle; /* Helps alignment if needed */
+      vertical-align: middle;
     }
     .tagline {
       font-size: 1.3rem;
@@ -111,7 +109,7 @@
       font-size: 1.1rem;
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 15px rgba(75, 108, 183, 0.4);
-      border: none;
+      border: 2px solid white; /* Added white stroke */
       cursor: pointer;
     }
     .cta-button:hover {
@@ -210,7 +208,6 @@
       0% { opacity: 0.8; }
       100% { opacity: 1; }
     }
-
     /* FEATURES SECTION */
     .features {
       padding: 40px 0 80px;
@@ -274,7 +271,6 @@
       margin-bottom: 15px;
       color: #e0e0ff;
     }
-
     /* HIGHLIGHT SECTION */
     .highlight-section {
       padding: 60px;
@@ -339,8 +335,8 @@
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       transition: transform 0.5s;
-      margin: auto; /* Center horizontally */
-      display: flex; /* Use flex to help center screen */
+      margin: auto;
+      display: flex;
       align-items: center;
       justify-content: center;
     }
@@ -348,18 +344,16 @@
       transform: translateY(-10px) rotate(1deg);
     }
     .app-screen {
-      /* Made position relative for easier scaling within flex parent */
       position: relative;
-      /* Removed absolute positioning (top, left, right, bottom) */
-      width: calc(100% - 30px); /* Calculate width based on parent padding/border */
-      height: calc(100% - 30px);/* Calculate height based on parent padding/border */
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
       background: linear-gradient(135deg, #1c2440, #202746);
       border-radius: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px;
-      box-sizing: border-box; /* Include padding in width/height */
+      box-sizing: border-box;
     }
     .app-logo {
       width: 70px;
@@ -371,13 +365,13 @@
       justify-content: center;
       margin-bottom: 20px;
       box-shadow: 0 5px 15px rgba(75, 108, 183, 0.4);
-      padding: 5px; /* Added padding for image */
-      flex-shrink: 0; /* Prevent logo from shrinking too much */
+      padding: 5px;
+      flex-shrink: 0;
     }
-    .app-logo img { /* Style for the image inside app-logo */
-        max-width: 80%;
-        max-height: 80%;
-        display: block; /* Prevents extra space */
+    .app-logo img {
+      max-width: 80%;
+      max-height: 80%;
+      display: block;
     }
     .scan-circle {
       width: 150px;
@@ -389,7 +383,7 @@
       justify-content: center;
       margin: 20px 0;
       position: relative;
-      flex-shrink: 0; /* Prevent shrinking */
+      flex-shrink: 0;
     }
     .scan-circle::before {
       content: '';
@@ -424,7 +418,7 @@
     .scan-status {
       text-align: center;
       margin-top: 20px;
-      width: 100%; /* Ensure it takes available width */
+      width: 100%;
     }
     .scan-status-text {
       font-size: 1.2rem;
@@ -433,44 +427,49 @@
       margin-bottom: 10px;
     }
     .progress-bar {
-      width: 90%; /* Use percentage for responsiveness */
-      max-width: 200px; /* Max width */
+      width: 90%;
+      max-width: 200px;
       height: 10px;
       background: rgba(20, 30, 70, 0.5);
       border-radius: 5px;
       overflow: hidden;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-      margin: 0 auto; /* Center the progress bar */
+      margin: 0 auto;
+      position: relative;
     }
     .progress {
       height: 100%;
-      width: 75%;
+      width: 0;
       background: linear-gradient(90deg, #2c47de, #7a28f7);
       border-radius: 5px;
       position: relative;
-      animation: progressPulse 2s infinite;
+      animation: fillProgress 2s ease-in-out forwards, progressPulse 2s infinite;
+    }
+    @keyframes fillProgress {
+      0% { width: 0; }
+      100% { width: 75%; }
     }
     @keyframes progressPulse {
       0% { opacity: 0.8; }
       50% { opacity: 1; }
       100% { opacity: 0.8; }
     }
-    .progress::before {
+    .progress-bar::after {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      bottom: 0;
+      left: -30px;
       width: 30px;
+      height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transform: skewX(-30deg);
       animation: shine 2s infinite;
+      z-index: 1;
     }
     @keyframes shine {
       0% { left: -30px; }
       100% { left: 100%; }
     }
-
     /* CTA AND TIMELINE SECTION */
     .cta-section {
       text-align: center;
@@ -526,7 +525,19 @@
       color: #b0b0ff;
       margin-bottom: 5px;
     }
-
+    /* CONTACT SECTION */
+    .contact-section {
+      padding: 40px 0 80px;
+    }
+    .contact-card {
+      background: rgba(20, 30, 70, 0.5);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
     /* FOOTER SECTION */
     footer {
       background: rgba(10, 15, 35, 0.8);
@@ -540,19 +551,18 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 40px;
-      /* Added max-width and margin for better centering on large screens */
       max-width: 900px;
       margin: 0 auto;
     }
     .footer-logo {
       flex: 1;
       min-width: 200px;
-      padding: 0 20px; /* Added padding to prevent text hitting edge */
+      padding: 0 20px;
     }
     .footer-contact {
       flex: 1;
       min-width: 200px;
-      padding: 0 20px; /* Added padding for consistency */
+      padding: 0 20px;
     }
     .footer-title {
       font-size: 1.3rem;
@@ -585,7 +595,6 @@
       color: #a0a0d0;
       font-size: 0.9rem;
     }
-
     /* WAITLIST MODAL POPUP */
     .modal {
       position: fixed;
@@ -619,26 +628,19 @@
       animation: zoomModal 0.4s ease;
     }
     @keyframes zoomModal {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
     .close-modal {
       position: absolute;
-      right: 15px; /* Increased space */
-      top: 15px;  /* Increased space */
-      font-size: 1.6rem; /* Made slightly larger */
-      line-height: 1; /* Ensure consistent height */
+      right: 15px;
+      top: 15px;
+      font-size: 1.6rem;
+      line-height: 1;
       text-decoration: none;
       color: #fff;
       transition: transform 0.3s;
       cursor: pointer;
-      /* Prevent selection */
       user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -647,249 +649,142 @@
     .close-modal:hover {
       transform: rotate(90deg);
     }
-    /* Prevent selection on title and general text */
     .modal-content h2,
     .modal-content p:not(.email-suggestion) {
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
     .modal-content p {
       font-size: 1.1rem;
       margin: 20px 0;
     }
-    /* Prevent selection on suggestion text, hide caret */
     .email-suggestion {
       cursor: default;
       margin-bottom: 30px;
-      caret-color: transparent; /* Hide caret */
-      user-select: none; /* Prevent selection of surrounding text */
+      caret-color: transparent;
+      user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
     }
-    /* Allow selection ONLY on the email link, hide caret */
     .email-suggestion a {
-      caret-color: transparent; /* Hide caret */
+      caret-color: transparent;
       text-decoration: underline;
       color: #fff;
-      user-select: text; /* Allow selecting the email address */
+      user-select: text;
       -webkit-user-select: text;
       -moz-user-select: text;
       -ms-user-select: text;
     }
-
     /* CONTACT BAR */
     .contact-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(10, 15, 35, 0.9); /* Slightly darker, more opaque */
-        padding: 15px 20px;
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
-        z-index: 999; /* Above content, below modal */
-        display: flex;
-        flex-direction: column; /* Stack text and button on small screens */
-        align-items: center;
-        text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 15, 35, 0.9);
+      padding: 15px 20px;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     .contact-bar p {
-        margin: 0 0 10px 0;
-        font-size: 0.95rem;
-        opacity: 0.9;
-        max-width: 600px; /* Limit text width on larger screens */
+      margin: 0 0 10px 0;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      max-width: 600px;
     }
     .contact-bar .contact-button {
-        /* Inherit some styles from .cta-button but adjust padding/size */
-        display: inline-block;
-        background: linear-gradient(90deg, #7a28f7, #2c47de); /* Reversed gradient */
-        color: #fff;
-        padding: 10px 25px; /* Slightly smaller */
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem; /* Slightly smaller */
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3);
-        border: none;
-        cursor: pointer;
-        margin-top: 5px; /* Space from text */
+      display: inline-block;
+      background: linear-gradient(90deg, #7a28f7, #2c47de);
+      color: #fff;
+      padding: 10px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3);
+      border: 2px solid white; /* Added white stroke */
+      cursor: pointer;
+      margin-top: 5px;
     }
     .contact-bar .contact-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(75, 108, 183, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(75, 108, 183, 0.5);
     }
-
     /* MOBILE ANIMATION KEYFRAMES */
     @keyframes fadeInSlideUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
     /* RESPONSIVE MOBILE STYLES */
     @media (max-width: 768px) {
-      body {
-        padding-bottom: 150px; /* Increase bottom padding more for contact bar */
-      }
-      .hero {
-        padding: 30px;
-        flex-direction: column;
-      }
-      .hero-content {
-        padding-right: 0;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-      .hero-image {
-        margin-bottom: 20px;
-      }
-      .section-title {
-        font-size: 2rem;
-      }
-
-      /* Add mobile entry animations */
+      body { padding-bottom: 150px; }
+      .hero { padding: 30px; flex-direction: column; }
+      .hero-content { padding-right: 0; margin-bottom: 30px; text-align: center; }
+      .hero-image { margin-bottom: 20px; }
+      .section-title { font-size: 2rem; }
       .feature-card, .timeline-content {
-           animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; /* Added delay */
-           opacity: 0; /* Start hidden for animation */
+        animation: fadeInSlideUp 0.6s ease-out 0.2s forwards;
+        opacity: 0;
       }
-
-      .highlight-section {
-        padding: 30px;
-        flex-direction: column;
-        text-align: center;
-      }
-      .highlight-image { /* Center phone image */
-          margin-bottom: 30px;
-          width: 100%; /* Allow full width */
-          display: flex;
-          justify-content: center;
-      }
-      .app-image { /* Ensure phone doesn't cause overflow & scales */
-          max-width: 280px; /* Reduce max width slightly more */
-          height: auto; /* Adjust height proportionally */
-          min-height: 480px; /* Adjusted min-height */
-          border-width: 8px; /* Thinner border */
-          /* Existing flex properties center the screen */
-      }
-      .app-screen {
-          /* Adjust screen padding and content size for smaller phone */
-           padding: 15px;
-           /* width/height calc is fine with relative position & box-sizing */
-      }
-      .app-logo {
-          width: 50px;
-          height: 50px;
-          margin-bottom: 15px;
-          padding: 4px;
-       }
-       .app-logo img {
-           max-width: 75%; max-height: 75%;
-       }
-       .app-screen h3 { font-size: 1.1rem; }
-       .app-screen p { font-size: 0.9rem; margin-bottom: 15px;}
-
-       .scan-circle {
-           width: 100px;
-           height: 100px;
-           margin: 15px 0;
-       }
-       .scan-circle .check { width: 40px; height: 40px;}
-       .scan-circle .check::before { width: 20px; height: 12px; border-width: 3px; transform: rotate(-45deg) translate(3px, -3px);}
-       .scan-circle::before { width: 90px; height: 90px; border-width: 4px; }
-       .scan-circle::after { width: 85px; height: 85px; border-width: 2px; }
-       .scan-status-text { font-size: 1rem; }
-       .progress-bar { width: 80%; max-width: 150px; }
-
-
-      .timeline {
-        max-width: 100%;
-        padding: 20px 10px; /* Adjusted padding */
-      }
-      .timeline::before {
-          /* Removed timeline line on mobile */
-          display: none;
-      }
-      .timeline-item {
-        width: 100%;
-        padding: 0 10px; /* Adjusted padding */
-        text-align: center !important;
-        left: 0 !important; /* Explicitly override desktop */
-        margin-bottom: 20px; /* Space between items */
-      }
-      .timeline-item:nth-child(odd) .timeline-content,
-      .timeline-item:nth-child(even) .timeline-content {
-        /* Removed specific margins for mobile centering */
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 90%; /* Prevent content taking full width */
-      }
-
-      .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        max-width: 100%; /* Override desktop max-width */
-        gap: 20px; /* Reduce gap */
-      }
-      .footer-logo, .footer-contact {
-        width: 90%; /* Adjust width */
-        min-width: unset; /* Reset min-width */
-        padding: 0 10px; /* Adjust padding */
-        margin-bottom: 10px; /* Reduce margin */
-      }
-      .copyright {
-        margin-top: 40px; /* Reduce margin */
-      }
-
-      .contact-bar {
-          /* Already flex-column, text-align center */
-          padding: 10px 15px; /* Adjust padding */
-      }
-       .contact-bar p {
-           font-size: 0.9rem; /* Slightly smaller text */
-       }
-       .contact-bar .contact-button {
-           padding: 8px 20px;
-           font-size: 0.95rem;
-       }
+      .highlight-section { padding: 30px; flex-direction: column; text-align: center; }
+      .highlight-image { margin-bottom: 30px; width: 100%; display: flex; justify-content: center; }
+      .app-image { max-width: 280px; height: auto; min-height: 480px; border-width: 8px; }
+      .app-screen { padding: 15px; }
+      .app-logo { width: 50px; height: 50px; margin-bottom: 15px; padding: 4px; }
+      .app-logo img { max-width: 75%; max-height: 75%; }
+      .app-screen h3 { font-size: 1.1rem; }
+      .app-screen p { font-size: 0.9rem; margin-bottom: 15px; }
+      .scan-circle { width: 100px; height: 100px; margin: 15px 0; }
+      .scan-circle .check { width: 40px; height: 40px; }
+      .scan-circle .check::before { width: 20px; height: 12px; border-width: 3px; transform: rotate(-45deg) translate(3px, -3px); }
+      .scan-circle::before { width: 90px; height: 90px; border-width: 4px; }
+      .scan-circle::after { width: 85px; height: 85px; border-width: 2px; }
+      .scan-status-text { font-size: 1rem; }
+      .progress-bar { width: 80%; max-width: 150px; }
+      .timeline { max-width: 100%; padding: 20px 10px; }
+      .timeline::before { display: none; }
+      .timeline-item { width: 100%; padding: 0 10px; text-align: center !important; left: 0 !important; margin-bottom: 20px; }
+      .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content { margin-left: auto; margin-right: auto; max-width: 90%; }
+      .footer-content { flex-direction: column; align-items: center; text-align: center; max-width: 100%; gap: 20px; }
+      .footer-logo, .footer-contact { width: 90%; min-width: unset; padding: 0 10px; margin-bottom: 10px; }
+      .copyright { margin-top: 40px; }
+      .contact-bar { padding: 10px 15px; }
+      .contact-bar p { font-size: 0.9rem; }
+      .contact-bar .contact-button { padding: 8px 20px; font-size: 0.95rem; }
     }
-      @media (max-width: 480px) {
-          .hero h1 {
-              font-size: 2.2rem; /* Smaller heading on very small screens */
-          }
-          .section-title {
-              font-size: 1.8rem;
-          }
-          .feature-card {
-              padding: 20px;
-          }
-           .app-image {
-               min-height: 420px; /* Further adjust if needed */
-               max-width: 240px;
-           }
-           .app-screen h3 { font-size: 1rem; }
-           .app-screen p { font-size: 0.8rem; }
-           .scan-circle { width: 80px; height: 80px;}
-           .scan-circle .check { width: 35px; height: 35px;}
-           .scan-circle .check::before { width: 18px; height: 10px;}
-           .scan-circle::before { width: 72px; height: 72px; }
-           .scan-circle::after { width: 68px; height: 68px; }
-           .progress-bar { max-width: 120px; }
-
-           .contact-bar p { font-size: 0.85rem;}
-           .contact-bar .contact-button { font-size: 0.9rem; padding: 7px 18px;}
-           body { padding-bottom: 140px; } /* Adjust padding if bar overlaps */
-      }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.2rem; }
+      .section-title { font-size: 1.8rem; }
+      .feature-card { padding: 20px; }
+      .app-image { min-height: 420px; max-width: 240px; }
+      .app-screen h3 { font-size: 1rem; }
+      .app-screen p { font-size: 0.8rem; }
+      .scan-circle { width: 80px; height: 80px; }
+      .scan-circle .check { width: 35px; height: 35px; }
+      .scan-circle .check::before { width: 18px; height: 10px; }
+      .scan-circle::before { width: 72px; height: 72px; }
+      .scan-circle::after { width: 68px; height: 68px; }
+      .progress-bar { max-width: 120px; }
+      .contact-bar p { font-size: 0.85rem; }
+      .contact-bar .contact-button { font-size: 0.9rem; padding: 7px 18px; }
+      body { padding-bottom: 140px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <img src="LAVAIQLogoWhite.png" alt="LAVAIQ Logo" class="logo">
-      <p class="tagline">Advanced Android Protection Powered by AI</p>
+      <p class="tagline">Advanced Android protection powered by AI — developed independently by a dedicated student developer.</p>
       <span class="development-badge">Beta Development</span>
     </header>
 
@@ -971,7 +866,7 @@
         <div class="app-image">
           <div class="app-screen">
             <div class="app-logo">
-                <img src="LAVAIQShield.png" alt="LAVAIQ Shield Logo">
+              <img src="LAVAIQShield.png" alt="LAVAIQ Shield Logo">
             </div>
             <h3 style="color: #e0e0ff; margin-bottom: 10px;">LAVAIQ Protection</h3>
             <p style="text-align: center; margin-bottom: 20px; opacity: 0.8;">UI Preview</p>
@@ -996,7 +891,7 @@
         <div class="timeline-item">
           <div class="timeline-content">
             <div class="timeline-date">2022-2024</div>
-            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Research &amp; Development</h3>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Research & Development</h3>
             <p>Three years of intensive AI and cybersecurity innovation.</p>
           </div>
         </div>
@@ -1018,6 +913,16 @@
       <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
     </section>
 
+    <!-- New Contact Section -->
+    <section class="contact-section">
+      <h2 class="section-title">Support Made Easy</h2>
+      <div class="contact-card">
+        <p>Support doesn’t have to be a hassle, ours isn’t. Try it out.</p>
+        <p>Feel free to reach out with any project inquiries, personal questions regarding the developer, or collaboration offers.</p>
+        <a href="mailto:lavaiq@outlook.com" class="cta-button">Contact Us</a>
+      </div>
+    </section>
+
     <footer>
       <div class="footer-content">
         <div class="footer-logo">
@@ -1031,22 +936,25 @@
         </div>
       </div>
       <div class="copyright">
-        <p>© 2025 LAVAIQ. All rights reserved.</p> </div>
+        <p>© 2025 LAVAIQ. All rights reserved.</p>
+      </div>
     </footer>
 
     <div id="waitlistModal" class="modal">
       <div class="modal-content">
-        <a href="#" class="close-modal">×</a> <h2>Join Our Waitlist</h2>
+        <a href="#" class="close-modal">×</a>
+        <h2>Join Our Waitlist</h2>
         <p>Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.</p>
         <p class="email-suggestion" tabindex="-1"> Alternatively, email us directly at
-          <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=I'd like to join the LAVAIQ waitlist!">lavaiq@outlook.com</a> </p>
+          <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=I'd like to join the LAVAIQ waitlist!">lavaiq@outlook.com</a>
+        </p>
         <p>Thank you for your interest!</p>
       </div>
     </div>
-  </div> <div class="contact-bar">
-      <p>Support doesn't have to be a hassle, ours isn't. Try it out. Contact us below if you have any project or personal questions.</p>
-      <a href="mailto:lavaiq@outlook.com?subject=Project/Personal Question&body=Hi LAVAIQ Team," class="contact-button">Contact Us</a>
   </div>
-
+  <div class="contact-bar">
+    <p>Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.</p>
+    <a href="mailto:lavaiq@outlook.com?subject=Project/Personal Question&body=Hi LAVAIQ Team," class="contact-button">Contact Us</a>
+  </div>
 </body>
 </html>
