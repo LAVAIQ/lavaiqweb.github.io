@@ -12,7 +12,6 @@
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://www.lavaiq.com/">
   <link rel="icon" href="LAVAIQShield.png" type="image/png">
-  <!-- Additional meta for SEO -->
   <meta name="robots" content="index, follow">
   <meta name="author" content="LAVAIQ Team">
   <style>
@@ -34,20 +33,20 @@
       padding: 0 20px;
     }
     header {
-      padding: 40px 0;
-      text-align: center;
-      background: rgba(10, 15, 35, 0.6);
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-      margin-bottom: 30px;
-    }
+  padding: 40px 0;
+  text-align: center;
+  background: rgba(10, 15, 35, 0.6);
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  margin-bottom: 30px;
+  border-radius: 20px; /* Added this line for curved edges */
+    }  
     .logo {
-      max-width: 250px;
+      max-width: 250px; /* Adjusted max-width */
       margin-bottom: 15px;
       filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 10px;
-      border-radius: 10px;
+      /* Removed background, padding, border-radius */
       display: inline-block;
+      vertical-align: middle; /* Helps alignment if needed */
     }
     .tagline {
       font-size: 1.3rem;
@@ -66,7 +65,6 @@
       margin-top: 10px;
       backdrop-filter: blur(5px);
     }
-
     /* HERO SECTION */
     .hero {
       display: flex;
@@ -81,8 +79,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Removed floating particles section */
-
     .hero-content {
       flex: 1;
       min-width: 300px;
@@ -159,7 +155,6 @@
       width: 200px;
       height: 240px;
       background: linear-gradient(135deg, #2c47de, #7a28f7);
-      /* Updated clip-path to a simpler polygon shape */
       clip-path: polygon(50% 0%, 0% 30%, 0% 70%, 50% 100%, 100% 70%, 100% 30%);
       position: relative;
       display: flex;
@@ -214,7 +209,7 @@
       0% { opacity: 0.8; }
       100% { opacity: 1; }
     }
-    
+
     /* FEATURES SECTION */
     .features {
       padding: 40px 0 80px;
@@ -278,7 +273,7 @@
       margin-bottom: 15px;
       color: #e0e0ff;
     }
-    
+
     /* HIGHLIGHT SECTION */
     .highlight-section {
       padding: 60px;
@@ -370,9 +365,14 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
-      font-weight: bold;
-      font-size: 18px;
       box-shadow: 0 5px 15px rgba(75, 108, 183, 0.4);
+      padding: 5px; /* Added padding for image */
+      /* Removed font-weight, font-size */
+    }
+    .app-logo img { /* Style for the image inside app-logo */
+        max-width: 80%;
+        max-height: 80%;
+        display: block; /* Prevents extra space */
     }
     .scan-circle {
       width: 150px;
@@ -461,7 +461,7 @@
       0% { left: -30px; }
       100% { left: 100%; }
     }
-    
+
     /* CTA AND TIMELINE SECTION */
     .cta-section {
       text-align: center;
@@ -517,8 +517,7 @@
       color: #b0b0ff;
       margin-bottom: 5px;
     }
-    /* Removed timeline-dot styles */
-    
+
     /* FOOTER SECTION */
     footer {
       background: rgba(10, 15, 35, 0.8);
@@ -532,14 +531,19 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 40px;
+      /* Added max-width and margin for better centering on large screens */
+      max-width: 900px;
+      margin: 0 auto;
     }
     .footer-logo {
       flex: 1;
       min-width: 200px;
+      padding: 0 20px; /* Added padding to prevent text hitting edge */
     }
     .footer-contact {
       flex: 1;
       min-width: 200px;
+      padding: 0 20px; /* Added padding for consistency */
     }
     .footer-title {
       font-size: 1.3rem;
@@ -572,7 +576,7 @@
       color: #a0a0d0;
       font-size: 0.9rem;
     }
-    
+
     /* WAITLIST MODAL POPUP */
     .modal {
       position: fixed;
@@ -644,7 +648,7 @@
       text-decoration: underline;
       color: #fff;
     }
-    
+
     /* RESPONSIVE MOBILE STYLES */
     @media (max-width: 768px) {
       .hero {
@@ -667,27 +671,72 @@
         flex-direction: column;
         text-align: center;
       }
+      .highlight-image { /* Center phone image */
+         margin-bottom: 30px;
+      }
+      .app-image { /* Ensure phone doesn't cause overflow */
+         max-width: 100%;
+         height: auto; /* Adjust height proportionally */
+         min-height: 450px; /* Prevent it becoming too small */
+      }
+      .app-screen {
+         /* Adjust screen position if needed */
+      }
+
       .timeline {
         max-width: 100%;
+        padding: 20px 10px; /* Adjusted padding */
       }
       .timeline::before {
-        left: 50%;
+         /* Removed timeline line on mobile */
+         display: none;
       }
       .timeline-item {
         width: 100%;
-        padding: 20px 20px;
+        padding: 0 10px; /* Adjusted padding */
         text-align: center !important;
+        left: 0 !important; /* Explicitly override desktop */
+        margin-bottom: 20px; /* Space between items */
       }
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        /* Removed specific margins for mobile centering */
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%; /* Prevent content taking full width */
+      }
+
       .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        max-width: 100%; /* Override desktop max-width */
+        gap: 20px; /* Reduce gap */
       }
       .footer-logo, .footer-contact {
-        width: 80%;
-        margin-bottom: 20px;
+        width: 90%; /* Adjust width */
+        min-width: unset; /* Reset min-width */
+        padding: 0 10px; /* Adjust padding */
+        margin-bottom: 10px; /* Reduce margin */
+      }
+      .copyright {
+        margin-top: 40px; /* Reduce margin */
       }
     }
+     @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 2.2rem; /* Smaller heading on very small screens */
+        }
+        .section-title {
+            font-size: 1.8rem;
+        }
+        .feature-card {
+            padding: 20px;
+        }
+        .app-image {
+            min-height: 400px;
+        }
+     }
   </style>
 </head>
 <body>
@@ -697,9 +746,7 @@
       <p class="tagline">Advanced Android Protection Powered by AI</p>
       <span class="development-badge">Beta Development</span>
     </header>
-
     <section class="hero">
-      <!-- Removed floating-particles to eliminate unwanted dots -->
       <div class="hero-content">
         <h1>Next-Generation Android Protection</h1>
         <p>LAVAIQ is an advanced Android antivirus that utilizes artificial intelligence to deliver multi-layered security against malware and cyber threats. Our modern design combines powerful protection with a user-friendly interface.</p>
@@ -713,7 +760,6 @@
         </div>
       </div>
     </section>
-
     <section class="features">
       <h2 class="section-title">Cutting-Edge Protection Features</h2>
       <div class="feature-grid">
@@ -749,7 +795,6 @@
         </div>
       </div>
     </section>
-
     <section class="highlight-section">
       <div class="highlight-content">
         <h2 class="section-title">Sophisticated Protection, Simple Interface</h2>
@@ -776,7 +821,9 @@
       <div class="highlight-image">
         <div class="app-image">
           <div class="app-screen">
-            <div class="app-logo">LQ</div>
+            <div class="app-logo">
+                <img src="LAVAIQShield.png" alt="LAVAIQ Shield Logo">
+            </div>
             <h3 style="color: #e0e0ff; margin-bottom: 10px;">LAVAIQ Protection</h3>
             <p style="text-align: center; margin-bottom: 20px; opacity: 0.8;">UI Preview</p>
             <div class="scan-circle">
@@ -792,7 +839,6 @@
         </div>
       </div>
     </section>
-
     <section class="cta-section">
       <h2 class="section-title">Coming Soon to Android</h2>
       <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience powerful security combined with a user-friendly design.</p>
@@ -821,7 +867,6 @@
       </div>
       <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
     </section>
-
     <footer>
       <div class="footer-content">
         <div class="footer-logo">
@@ -838,15 +883,13 @@
         <p>© 2025 LAVAIQ. All rights reserved.</p>
       </div>
     </footer>
-
-    <!-- WAITLIST MODAL -->
     <div id="waitlistModal" class="modal">
       <div class="modal-content">
         <a href="#" class="close-modal">×</a>
         <h2>Join Our Waitlist</h2>
         <p>Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.</p>
         <p class="email-suggestion" tabindex="-1">
-          Alternatively, email us directly at 
+          Alternatively, email us directly at
           <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=Waitlist">lavaiq@outlook.com</a>
         </p>
         <p>Thank you for your interest!</p>
