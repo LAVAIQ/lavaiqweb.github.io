@@ -1,992 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAVAIQ - Next Generation Android Antivirus</title>
-    <meta name="description" content="LAVAIQ is an advanced Android antivirus app powered by AI">
-    <meta name="keywords" content="Android antivirus, AI security, malware protection, zero-day, cloud intelligence, app security, privacy protection">
-    <meta property="og:title" content="LAVAIQ - Next Generation Android Antivirus">
-    <meta property="og:description" content="LAVAIQ is an advanced Android antivirus app powered by AI, offering multi-layered security and zero-day protection..">
-    <meta property="og:image" content="LAVAIQ.png"> <meta property="og:type" content="website">
-    <link rel="icon" href="LAVAIQ.png" type="image/png"> <style>
-        body {
-            background: linear-gradient(135deg, #0a2191 0%, #2c47de 50%, #7a28f7 100%);
-            color: #f5f5f5;
-            line-height: 1.6;
-            min-height: 100vh;
-            margin: 0; /* Ensure no default body margin */
-            padding-bottom: 60px; /* Add padding at the bottom for the fixed footer */
-            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-            font-family: sans-serif; /* Add a default font */
-            cursor: default; /* Set default cursor for the entire body */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            padding: 60px 0 30px;
-            text-align: center;
-        }
-
-        .logo {
-            max-width: 250px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-            background-color: rgba(255, 255, 255, 0.1); /* Add a subtle background to make logo visible */
-            padding: 5px;
-            border-radius: 5px;
-            display: inline-block; /* To contain the background */
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        .development-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        /* HERO */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 50px;
-            background: rgba(15, 25, 60, 0.5);
-            border-radius: 20px;
-            margin-bottom: 80px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(42, 71, 222, 0.05) 0%, rgba(122, 40, 247, 0.1) 100%);
-            z-index: 0;
-        }
-
-        .hero-content {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 25px;
-            background: linear-gradient(90deg, #e0e0ff, #d896ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(90deg, #2c47de, #7a28f7);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(75, 108, 183, 0.4);
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(75, 108, 183, 0.6);
-        }
-
-        .coming-soon {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .shield-icon {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(42, 71, 222, 0.2) 0%, rgba(122, 40, 247, 0.1) 50%, rgba(10, 33, 145, 0) 70%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            animation: pulse 3s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .shield {
-            width: 200px;
-            height: 240px;
-            background: linear-gradient(135deg, #2c47de, #7a28f7);
-            clip-path: path('M100 0L0 30v90c0 50 30 95 100 120 70-25 100-70 100-120V30L100 0z');
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(75, 108, 183, 0.6);
-            animation: glow 4s infinite alternate;
-        }
-
-        @keyframes glow {
-            0% { box-shadow: 0 10px 30px rgba(42, 71, 222, 0.6); }
-            100% { box-shadow: 0 15px 40px rgba(122, 40, 247, 0.8); }
-        }
-
-        .shield::after {
-            content: '';
-            position: absolute;
-            width: 180px;
-            height: 220px;
-            background: linear-gradient(135deg, #3d57e2, #8b3ff8);
-            clip-path: path('M90 10L10 35v80c0 45 27 85 90 105 63-20 90-60 90-105V35L90 10z');
-            animation: shieldPulse 3s infinite alternate;
-        }
-
-        @keyframes shieldPulse {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-
-        .check {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            animation: checkPulse 2s infinite alternate;
-        }
-
-        @keyframes checkPulse {
-            0% { transform: scale(1); background: rgba(255, 255, 255, 0.15); }
-            100% { transform: scale(1.1); background: rgba(255, 255, 255, 0.25); }
-        }
-
-        .check::before {
-            content: '';
-            width: 35px;
-            height: 20px;
-            border-left: 5px solid white;
-            border-bottom: 5px solid white;
-            transform: rotate(-45deg) translate(5px, -5px);
-            animation: checkMark 2s infinite alternate;
-        }
-
-        @keyframes checkMark {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-
-        .floating-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-500px) translateX(100px); opacity: 0; }
-        }
-
-        /* FEATURES and HIGHLIGHT */
-        .features {
-            padding: 40px 0 80px;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            background: linear-gradient(90deg, #e0e0ff, #d896ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-card {
-            background: rgba(20, 30, 70, 0.5);
-            border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.4s, box-shadow 0.4s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(42, 71, 222, 0.05) 0%, rgba(122, 40, 247, 0.05) 100%);
-            z-index: -1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #2c47de, #7a28f7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #e0e0ff;
-        }
-
-        .highlight-section {
-            padding: 60px;
-            background: rgba(20, 30, 70, 0.3);
-            border-radius: 20px;
-            margin-bottom: 80px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 33, 145, 0.1) 0%, rgba(42, 71, 222, 0.1) 50%, rgba(122, 40, 247, 0.1) 100%);
-            z-index: 0;
-        }
-
-        .highlight-content {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .highlight-image {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .protection-levels {
-            margin-top: 30px;
-        }
-
-        .protection-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            transition: transform 0.3s;
-        }
-
-        .protection-item:hover {
-            transform: translateX(5px);
-        }
-
-        .protection-icon {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #2c47de, #7a28f7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 14px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .app-image {
-            width: 300px;
-            height: 600px;
-            background: #1a1f35;
-            border-radius: 30px;
-            border: 10px solid #2a2f45;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: transform 0.5s;
-        }
-
-        .app-image:hover {
-            transform: translateY(-10px) rotate(1deg);
-        }
-
-        .app-screen {
-            position: absolute;
-            top: 50px;
-            left: 15px;
-            right: 15px;
-            bottom: 50px;
-            background: linear-gradient(135deg, #1c2440, #202746);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .app-logo {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #2c47de, #7a28f7);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 5px 15px rgba(75, 108, 183, 0.4);
-        }
-
-        .scan-circle {
-            width: 150px;
-            height: 150px;
-            background: rgba(20, 30, 70, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .scan-circle::before {
-            content: '';
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 5px solid transparent;
-            border-top: 5px solid #7a28f7;
-            border-right: 5px solid #2c47de;
-            animation: scan 2s linear infinite;
-        }
-
-        .scan-circle::after {
-            content: '';
-            position: absolute;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top: 3px solid #2c47de;
-            border-left: 3px solid #7a28f7;
-            animation: scanReverse 3s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes scanReverse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
-
-        .scan-status {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .scan-status-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #e0e0ff;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar {
-            width: 200px;
-            height: 10px;
-            background: rgba(20, 30, 70, 0.5);
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .progress {
-            height: 100%;
-            width: 75%;
-            background: linear-gradient(90deg, #2c47de, #7a28f7);
-            border-radius: 5px;
-            position: relative;
-            animation: progressPulse 2s infinite;
-        }
-
-        @keyframes progressPulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-
-        .progress::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: skewX(-30deg);
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% { left: -30px; }
-            100% { left: 100%; }
-        }
-
-        /* CTA SECTION and TIMELINE (Development Steps) */
-        .cta-section {
-            text-align: center;
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .timeline {
-            margin: 40px auto;
-            max-width: 800px;
-            position: relative;
-            padding: 20px 0;
-        }
-
-        /* Vertical line */
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, #7a28f7, #2c47de, transparent);
-        }
-
-        .timeline-item {
-            position: relative;
-            width: 50%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Left and right item styling */
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            text-align: left;
-        }
-
-        .timeline-content {
-            background: rgba(20, 30, 70, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-right: 30px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: 30px;
-        }
-
-        .timeline-date {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #b0b0ff;
-            margin-bottom: 5px;
-        }
-
-        /* Remove the purple dots */
-        .timeline-dot {
-            display: none;
-        }
-
-        /* FOOTER */
-        footer {
-            background: rgba(10, 15, 35, 0.8);
-            padding: 60px 0 30px;
-            border-radius: 20px 20px 0 0;
-            position: relative; /* For potential absolute positioning of elements within */
-            z-index: 10; /* Ensure footer is above other elements */
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .footer-logo {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-contact {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #e0e0ff;
-        }
-
-        .footer-logo-img {
-            max-width: 180px;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-
-        .footer-email {
-            color: #a088ff;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-top: 10px;
-            border-bottom: 1px dotted rgba(160, 136, 255, 0.3);
-            padding-bottom: 2px;
-        }
-
-        .footer-email:hover {
-            color: #e0e0ff;
-            border-bottom-color: #e0e0ff;
-        }
-
-        .copyright {
-            margin-top: 60px;
-            text-align: center;
-            color: #a0a0d0;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 30px;
-            }
-
-            .hero-content {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-
-            .highlight-section {
-                padding: 30px;
-            }
-
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 40px;
-                padding-right: 40px;
-                text-align: left !important;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .footer-logo, .footer-contact {
-                width: 80%;
-                min-width: auto;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* Waitlist Modal Popup Styles using CSS-only :target approach */
-        .modal {
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 15, 35, 0.8);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            display: flex; /* Center the modal content */
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* When modal is targeted, show it */
-        .modal:target {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #7a28f7, #2c47de);
-            padding: 30px 20px;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 10px;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            animation: zoomModal 0.4s ease;
-        }
-
-        @keyframes zoomModal {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            font-size: 1.4rem;
-            text-decoration: none;
-            color: #fff;
-            transition: transform 0.3s;
-            cursor: pointer;
-            user-select: none; /* Prevent text cursor appearance */
-        }
-
-        .close-modal:hover {
-            transform: rotate(90deg);
-        }
-
-        .modal-content p {
-            font-size: 1.1rem;
-            margin: 20px 0;
-        }
-
-        .email-suggestion {
-            cursor: text; /* Set cursor to text for the email suggestion */
-            margin-bottom: 30px;
-            user-select: text; /* Allow text selection */
-            caret-color: transparent; /* Hide the blinking cursor */
-        }
-
-        .email-suggestion a {
-            caret-color: transparent; /* Hide the blinking cursor for the link as well */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAVAIQ - Next Generation Android Antivirus</title>
+  <meta name="description" content="LAVAIQ is an advanced Android antivirus app powered by AI. Experience multi-layer protection and cutting-edge technology.">
+  <meta name="keywords" content="Android antivirus, AI security, malware protection, zero-day, cloud intelligence, app security, privacy protection">
+  <meta property="og:title" content="LAVAIQ - Next Generation Android Antivirus">
+  <meta property="og:description" content="LAVAIQ is an advanced Android antivirus app powered by AI, offering multi-layered security and zero-day protection.">
+  <meta property="og:image" content="LAVAIQ.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="LAVAIQ.png" type="image/png">
+  <!-- Additional meta for SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="LAVAIQ Team">
+  <style>
+    /* GLOBAL STYLES */
+    body {
+      background: linear-gradient(135deg, #0a2191 0%, #2c47de 50%, #7a28f7 100%);
+      color: #f5f5f5;
+      line-height: 1.6;
+      min-height: 100vh;
+      margin: 0;
+      padding-bottom: 60px;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      cursor: default;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    header {
+      padding: 40px 0;
+      text-align: center;
+      background: rgba(10, 15, 35, 0.6);
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      margin-bottom: 30px;
+    }
+    .logo {
+      max-width: 250px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .tagline {
+      font-size: 1.3rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .development-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      backdrop-filter: blur(5px);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 50px;
+      background: rgba(15, 25, 60, 0.5);
+      border-radius: 20px;
+      margin-bottom: 80px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Removed floating particles section */
+
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+      padding-right: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      background: linear-gradient(90deg, #e0e0ff, #d896ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(90deg, #2c47de, #7a28f7);
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(75, 108, 183, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(75, 108, 183, 0.6);
+    }
+    .coming-soon {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .hero-image {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    /* SHIELD ICON (Multi-layer Protection) */
+    .shield-icon {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(42, 71, 222, 0.2) 0%, rgba(122, 40, 247, 0.1) 50%, rgba(10, 33, 145, 0) 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: pulse 3s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .shield {
+      width: 200px;
+      height: 240px;
+      background: linear-gradient(135deg, #2c47de, #7a28f7);
+      /* Updated clip-path to a simpler polygon shape */
+      clip-path: polygon(50% 0%, 0% 30%, 0% 70%, 50% 100%, 100% 70%, 100% 30%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(75, 108, 183, 0.6);
+      animation: glow 4s infinite alternate;
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 10px 30px rgba(42, 71, 222, 0.6); }
+      100% { box-shadow: 0 15px 40px rgba(122, 40, 247, 0.8); }
+    }
+    .shield::after {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 220px;
+      background: linear-gradient(135deg, #3d57e2, #8b3ff8);
+      clip-path: polygon(50% 5%, 5% 30%, 5% 70%, 50% 95%, 95% 70%, 95% 30%);
+      animation: shieldPulse 3s infinite alternate;
+    }
+    @keyframes shieldPulse {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+    .check {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      animation: checkPulse 2s infinite alternate;
+    }
+    @keyframes checkPulse {
+      0% { transform: scale(1); background: rgba(255, 255, 255, 0.15); }
+      100% { transform: scale(1.1); background: rgba(255, 255, 255, 0.25); }
+    }
+    .check::before {
+      content: '';
+      width: 35px;
+      height: 20px;
+      border-left: 5px solid #fff;
+      border-bottom: 5px solid #fff;
+      transform: rotate(-45deg) translate(5px, -5px);
+      animation: checkMark 2s infinite alternate;
+    }
+    @keyframes checkMark {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+    
+    /* FEATURES SECTION */
+    .features {
+      padding: 40px 0 80px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg, #e0e0ff, #d896ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .feature-card {
+      background: rgba(20, 30, 70, 0.5);
+      border-radius: 15px;
+      padding: 30px;
+      transition: transform 0.4s, box-shadow 0.4s;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(42, 71, 222, 0.05) 0%, rgba(122, 40, 247, 0.05) 100%);
+      z-index: -1;
+    }
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #2c47de, #7a28f7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
+    }
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #e0e0ff;
+    }
+    
+    /* HIGHLIGHT SECTION */
+    .highlight-section {
+      padding: 60px;
+      background: rgba(20, 30, 70, 0.3);
+      border-radius: 20px;
+      margin-bottom: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10, 33, 145, 0.1) 0%, rgba(42, 71, 222, 0.1) 50%, rgba(122, 40, 247, 0.1) 100%);
+      z-index: 0;
+    }
+    .highlight-content,
+    .highlight-image {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+      z-index: 1;
+    }
+    .protection-levels {
+      margin-top: 30px;
+    }
+    .protection-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+    .protection-item:hover {
+      transform: translateX(5px);
+    }
+    .protection-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #2c47de, #7a28f7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 14px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .app-image {
+      width: 300px;
+      height: 600px;
+      background: #1a1f35;
+      border-radius: 30px;
+      border: 10px solid #2a2f45;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: transform 0.5s;
+      margin: auto;
+    }
+    .app-image:hover {
+      transform: translateY(-10px) rotate(1deg);
+    }
+    .app-screen {
+      position: absolute;
+      top: 50px;
+      left: 15px;
+      right: 15px;
+      bottom: 50px;
+      background: linear-gradient(135deg, #1c2440, #202746);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .app-logo {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #2c47de, #7a28f7);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 5px 15px rgba(75, 108, 183, 0.4);
+    }
+    .scan-circle {
+      width: 150px;
+      height: 150px;
+      background: rgba(20, 30, 70, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      position: relative;
+    }
+    .scan-circle::before {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-top: 5px solid #7a28f7;
+      border-right: 5px solid #2c47de;
+      animation: scan 2s linear infinite;
+    }
+    .scan-circle::after {
+      content: '';
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top: 3px solid #2c47de;
+      border-left: 3px solid #7a28f7;
+      animation: scanReverse 3s linear infinite;
+    }
+    @keyframes scan {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes scanReverse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+    .scan-status {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .scan-status-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #e0e0ff;
+      margin-bottom: 10px;
+    }
+    .progress-bar {
+      width: 200px;
+      height: 10px;
+      background: rgba(20, 30, 70, 0.5);
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .progress {
+      height: 100%;
+      width: 75%;
+      background: linear-gradient(90deg, #2c47de, #7a28f7);
+      border-radius: 5px;
+      position: relative;
+      animation: progressPulse 2s infinite;
+    }
+    @keyframes progressPulse {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+    .progress::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 30px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: skewX(-30deg);
+      animation: shine 2s infinite;
+    }
+    @keyframes shine {
+      0% { left: -30px; }
+      100% { left: 100%; }
+    }
+    
+    /* CTA AND TIMELINE SECTION */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+      position: relative;
+    }
+    .timeline {
+      margin: 40px auto;
+      max-width: 800px;
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, #7a28f7, #2c47de, transparent);
+    }
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+    .timeline-content {
+      background: rgba(20, 30, 70, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: 30px;
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: 30px;
+    }
+    .timeline-date {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #b0b0ff;
+      margin-bottom: 5px;
+    }
+    /* Removed timeline-dot styles */
+    
+    /* FOOTER SECTION */
+    footer {
+      background: rgba(10, 15, 35, 0.8);
+      padding: 60px 0 30px;
+      border-radius: 20px 20px 0 0;
+      position: relative;
+      z-index: 10;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-logo {
+      flex: 1;
+      min-width: 200px;
+    }
+    .footer-contact {
+      flex: 1;
+      min-width: 200px;
+    }
+    .footer-title {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #e0e0ff;
+    }
+    .footer-logo-img {
+      max-width: 180px;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+    .footer-email {
+      color: #a088ff;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin-top: 10px;
+      border-bottom: 1px dotted rgba(160, 136, 255, 0.3);
+      padding-bottom: 2px;
+    }
+    .footer-email:hover {
+      color: #e0e0ff;
+      border-bottom-color: #e0e0ff;
+    }
+    .copyright {
+      margin-top: 60px;
+      text-align: center;
+      color: #a0a0d0;
+      font-size: 0.9rem;
+    }
+    
+    /* WAITLIST MODAL POPUP */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 15, 35, 0.8);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: linear-gradient(135deg, #7a28f7, #2c47de);
+      padding: 30px 20px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      animation: zoomModal 0.4s ease;
+    }
+    @keyframes zoomModal {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .close-modal {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.3s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .close-modal:hover {
+      transform: rotate(90deg);
+    }
+    .modal-content p {
+      font-size: 1.1rem;
+      margin: 20px 0;
+    }
+    .email-suggestion {
+      cursor: default; /* Prevent blinking cursor */
+      margin-bottom: 30px;
+      user-select: text;
+      caret-color: transparent;
+    }
+    .email-suggestion a {
+      caret-color: transparent;
+      text-decoration: underline;
+      color: #fff;
+    }
+    
+    /* RESPONSIVE MOBILE STYLES */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 30px;
+        flex-direction: column;
+      }
+      .hero-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .hero-image {
+        margin-bottom: 20px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .highlight-section {
+        padding: 30px;
+        flex-direction: column;
+        text-align: center;
+      }
+      .timeline {
+        max-width: 100%;
+      }
+      .timeline::before {
+        left: 50%;
+      }
+      .timeline-item {
+        width: 100%;
+        padding: 20px 20px;
+        text-align: center !important;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-logo, .footer-contact {
+        width: 80%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="LAVAIQ.png" alt="LAVAIQ Logo" class="logo">
-            <p class="tagline">Advanced Android Protection Powered by AI</p>
-            <span class="development-badge">Beta Development</span>
-        </header>
+  <div class="container">
+    <header>
+      <img src="LAVAIQ.png" alt="LAVAIQ Logo" class="logo">
+      <p class="tagline">Advanced Android Protection Powered by AI</p>
+      <span class="development-badge">Beta Development</span>
+    </header>
 
-        <section class="hero">
-            <div class="floating-particles">
-                <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-                <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
-                <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
-                <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
-                <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
-                <div class="particle" style="left: 60%; animation-delay: 0.5s;"></div>
-                <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
-                <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-                <div class="particle" style="left: 90%; animation-delay: 3.5s;"></div>
-            </div>
+    <section class="hero">
+      <!-- Removed floating-particles to eliminate unwanted dots -->
+      <div class="hero-content">
+        <h1>Next-Generation Android Protection</h1>
+        <p>LAVAIQ is an advanced Android antivirus that utilizes artificial intelligence to deliver multi-layered security against malware and cyber threats. Our modern design combines powerful protection with a user-friendly interface.</p>
+        <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
+      </div>
+      <div class="hero-image">
+        <div class="shield-icon">
+          <div class="shield">
+            <div class="check"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="hero-content">
-                <h1>Next-Generation Android Protection</h1>
-                <p>LAVAIQ is an advanced Android antivirus that utilizes artificial intelligence to deliver multi-layered security against malware and cyber threats. Our modern design combines powerful protection with a simple, user-friendly interface.</p>
-                <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
-            </div>
-            <div class="hero-image">
-                <div class="shield-icon">
-                    <div class="shield">
-                        <div class="check"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="features">
+      <h2 class="section-title">Cutting-Edge Protection Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3 class="feature-title">AI-Powered Analysis</h3>
+          <p>Our artificial intelligence engine continuously learns and adapts to new threats, providing advanced protection without requiring full retraining.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">Zero-Day Protection</h3>
+          <p>LAVAIQ detects previously unknown malware threats in real-time using cutting-edge algorithms.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦📦</div>
+          <h3 class="feature-title">Multi-Layer Security</h3>
+          <p>Comprehensive protection that combines AI, signature analysis, heuristics, and anomaly detection.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <h3 class="feature-title">Cloud Intelligence</h3>
+          <p>Instant threat intelligence sharing via our secure cloud backend.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">Modern App UI</h3>
+          <p>An intuitive interface that is as visually appealing as it is user-friendly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Privacy Protection</h3>
+          <p>We safeguard your personal data with strict privacy measures and advanced security protocols.</p>
+        </div>
+      </div>
+    </section>
 
-        <section class="features">
-    <h2 class="section-title">Cutting-Edge Protection Features</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h3 class="feature-title">AI-Powered Analysis</h3>
-            <p>Our artificial intelligence engine continuously learns and adapts to new threats, providing advanced protection without requiring full retraining.</p>
+    <section class="highlight-section">
+      <div class="highlight-content">
+        <h2 class="section-title">Sophisticated Protection, Simple Interface</h2>
+        <p>After 3 years of active development, LAVAIQ combines advanced security technology with a clean, modern design. Enjoy smooth animations and intuitive controls that explain complex security concepts in simple terms.</p>
+        <div class="protection-levels">
+          <div class="protection-item">
+            <div class="protection-icon">✓</div>
+            <p>User-friendly explanations of detected threats</p>
+          </div>
+          <div class="protection-item">
+            <div class="protection-icon">✓</div>
+            <p>Advanced AI trained on thousands of parameters</p>
+          </div>
+          <div class="protection-item">
+            <div class="protection-icon">✓</div>
+            <p>Lightweight design that keeps your device fast</p>
+          </div>
+          <div class="protection-item">
+            <div class="protection-icon">✓</div>
+            <p>Seven original innovations in cybersecurity</p>
+          </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h3 class="feature-title">Zero-Day Protection</h3>
-            <p>LAVAIQ is specifically designed to detect completely new, previously unknown malware threats in real-time.</p>
+      </div>
+      <div class="highlight-image">
+        <div class="app-image">
+          <div class="app-screen">
+            <div class="app-logo">LQ</div>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;">LAVAIQ Protection</h3>
+            <p style="text-align: center; margin-bottom: 20px; opacity: 0.8;">UI Preview</p>
+            <div class="scan-circle">
+              <div class="check"></div>
+            </div>
+            <div class="scan-status">
+              <p class="scan-status-text">Development Status</p>
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">📦📦</div>
-            <h3 class="feature-title">Multi-Layer Security</h3>
-            <p>Get comprehensive protection with multiple detection techniques, including AI, signature analysis, heuristics, and permission abnormality detection.</p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2 class="section-title">Coming Soon to Android</h2>
+      <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience powerful security combined with a user-friendly design.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2022-2024</div>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Research &amp; Development</h3>
+            <p>Three years of intensive AI and cybersecurity innovation.</p>
+          </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">☁️</div>
-            <h3 class="feature-title">Cloud Intelligence</h3>
-            <p>Connects to a secure cloud backend to instantly share threat intelligence and updates across all users globally.</p>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">Current Stage</div>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Beta Testing</h3>
+            <p>Final refinements and optimization underway.</p>
+          </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">📱</div>
-            <h3 class="feature-title">Modern App UI</h3>
-            <p>Experience a visually stunning and intuitive interface designed for ease of use and seamless interaction.</p>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">Coming Soon</div>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Public Release</h3>
+            <p>Launch on the Google Play Store is imminent.</p>
+          </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3 class="feature-title">Protecting Your Privacy</h3>
-            <p>We are committed to safeguarding your personal data with strict privacy policies and advanced security measures.</p>
+      </div>
+      <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="LAVAIQ.png" alt="LAVAIQ Logo" class="footer-logo-img" />
+          <p>Advanced Android protection powered by AI, now in final stages of development.</p>
         </div>
+        <div class="footer-contact">
+          <h3 class="footer-title">Contact Us</h3>
+          <p>Questions or interest in our beta program? Get in touch with our development team.</p>
+          <a href="mailto:lavaiq@outlook.com" class="footer-email">lavaiq@outlook.com</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 LAVAIQ. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- WAITLIST MODAL -->
+    <div id="waitlistModal" class="modal">
+      <div class="modal-content">
+        <a href="#" class="close-modal">×</a>
+        <h2>Join Our Waitlist</h2>
+        <p>Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.</p>
+        <p class="email-suggestion" tabindex="-1">
+          Alternatively, email us directly at 
+          <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=Waitlist">lavaiq@outlook.com</a>
+        </p>
+        <p>Thank you for your interest!</p>
+      </div>
     </div>
-  </section>
-
-        <section class="highlight-section">
-            <div class="highlight-content">
-                <h2 class="section-title">Sophisticated Protection, Simple Interface</h2>
-                <p>After 3 years of active development, LAVAIQ combines cutting-edge security technology with a clean, user-friendly design. Our app features modern animations that enhance the visual appeal while making complex security concepts easy to understand.</p>
-
-                <div class="protection-levels">
-                    <div class="protection-item">
-                        <div class="protection-icon">✓</div>
-                        <p>User-friendly explanations of detected threats in simple language</p>
-                    </div>
-                    <div class="protection-item">
-                        <div class="protection-icon">✓</div>
-                        <p>Advanced AI trained on over 14,000 parameters</p>
-                    </div>
-                    <div class="protection-item">
-                        <div class="protection-icon">✓</div>
-                        <p>Lightweight app that won't slow down your device</p>
-                    </div>
-                    <div class="protection-item">
-                        <div class="protection-icon">✓</div>
-                        <p>Featuring 7 original technological innovations in cybersecurity</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="highlight-image">
-                <div class="app-image">
-                    <div class="app-screen">
-                        <div class="app-logo">LQ</div>
-                        <h3 style="color: #e0e0ff; margin-bottom: 10px;">LAVAIQ Protection</h3>
-                        <p style="text-align: center; margin-bottom: 20px; opacity: 0.8;">UI Preview</p>
-
-                        <div class="scan-circle">
-                            <div class="check"></div>
-                        </div>
-
-                        <div class="scan-status">
-                            <p class="scan-status-text">Development Status</p>
-                            <div class="progress-bar">
-                                <div class="progress"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2 class="section-title">Coming Soon to Android</h2>
-            <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience the perfect balance of powerful security and user-friendly design.</p>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022-2024</div>
-                        <h3 style="color: #e0e0ff; margin-bottom: 10px;">Research &amp; Development</h3>
-                        <p>Three years of intensive AI development and cybersecurity innovation</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Current Stage</div>
-                        <h3 style="color: #e0e0ff; margin-bottom: 10px;">Beta Testing</h3>
-                        <p>Final refinements and performance optimization</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Coming Soon</div>
-                        <h3 style="color: #e0e0ff; margin-bottom: 10px;">Public Release</h3>
-                        <p>Official launch on Google Play Store</p>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
-        </section>
-
-        <footer>
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="LAVAIQ.png" alt="LAVAIQ Logo" class="footer-logo-img" />
-                    <p>Advanced Android protection powered by artificial intelligence, currently in final stages of development.</p>
-                </div>
-
-                <div class="footer-contact">
-                    <h3 class="footer-title">Contact Us</h3>
-                    <p>Have questions about LAVAIQ or want to join our beta testing program? Get in touch with our development team.</p>
-                    <a href="mailto:lavaiq@outlook.com" class="footer-email">lavaiq@outlook.com</a>
-                </div>
-            </div>
-
-            <div class="copyright">
-                <p>© 2025 LAVAIQ. All rights reserved.</p>
-            </div>
-        </footer>
-
-        <div id="waitlistModal" class="modal">
-            <div class="modal-content">
-                <a href="#" class="close-modal">×</a>
-                <h2>Join Our Waitlist</h2>
-                <p>Be the first to know when LAVAIQ is released! Enter your email below to join our waitlist.</p>
-                <p class="email-suggestion" tabindex="-1">You can also email us directly at <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=Waitlist" style="color: #fff; text-decoration: underline; cursor: text; user-select: text; caret-color: transparent;">lavaiq@outlook.com</a> with the subject and body as "Waitlist".</p>
-                <p>Thank you for your interest!</p>
-            </div>
-        </div>
-    </div>
+  </div>
 </body>
 </html>
