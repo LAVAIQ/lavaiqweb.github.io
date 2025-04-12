@@ -22,7 +22,8 @@
       line-height: 1.6;
       min-height: 100vh;
       margin: 0;
-      padding-bottom: 60px;
+      /* Adjusted padding-bottom to accommodate the new contact bar */
+      padding-bottom: 120px; /* Increased space for contact bar */
       box-sizing: border-box;
       font-family: sans-serif;
       cursor: default;
@@ -39,7 +40,7 @@
   border-bottom: 2px solid rgba(255,255,255,0.1);
   margin-bottom: 30px;
   border-radius: 20px; /* Added this line for curved edges */
-    }  
+    }
     .logo {
       max-width: 250px; /* Adjusted max-width */
       margin-bottom: 15px;
@@ -338,23 +339,27 @@
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       transition: transform 0.5s;
-      margin: auto;
+      margin: auto; /* Center horizontally */
+      display: flex; /* Use flex to help center screen */
+      align-items: center;
+      justify-content: center;
     }
     .app-image:hover {
       transform: translateY(-10px) rotate(1deg);
     }
     .app-screen {
-      position: absolute;
-      top: 50px;
-      left: 15px;
-      right: 15px;
-      bottom: 50px;
+      /* Made position relative for easier scaling within flex parent */
+      position: relative;
+      /* Removed absolute positioning (top, left, right, bottom) */
+      width: calc(100% - 30px); /* Calculate width based on parent padding/border */
+      height: calc(100% - 30px);/* Calculate height based on parent padding/border */
       background: linear-gradient(135deg, #1c2440, #202746);
       border-radius: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px;
+      box-sizing: border-box; /* Include padding in width/height */
     }
     .app-logo {
       width: 70px;
@@ -367,7 +372,7 @@
       margin-bottom: 20px;
       box-shadow: 0 5px 15px rgba(75, 108, 183, 0.4);
       padding: 5px; /* Added padding for image */
-      /* Removed font-weight, font-size */
+      flex-shrink: 0; /* Prevent logo from shrinking too much */
     }
     .app-logo img { /* Style for the image inside app-logo */
         max-width: 80%;
@@ -384,6 +389,7 @@
       justify-content: center;
       margin: 20px 0;
       position: relative;
+      flex-shrink: 0; /* Prevent shrinking */
     }
     .scan-circle::before {
       content: '';
@@ -418,6 +424,7 @@
     .scan-status {
       text-align: center;
       margin-top: 20px;
+      width: 100%; /* Ensure it takes available width */
     }
     .scan-status-text {
       font-size: 1.2rem;
@@ -426,12 +433,14 @@
       margin-bottom: 10px;
     }
     .progress-bar {
-      width: 200px;
+      width: 90%; /* Use percentage for responsiveness */
+      max-width: 200px; /* Max width */
       height: 10px;
       background: rgba(20, 30, 70, 0.5);
       border-radius: 5px;
       overflow: hidden;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+      margin: 0 auto; /* Center the progress bar */
     }
     .progress {
       height: 100%;
@@ -621,36 +630,110 @@
     }
     .close-modal {
       position: absolute;
-      right: 10px;
-      top: 10px;
-      font-size: 1.4rem;
+      right: 15px; /* Increased space */
+      top: 15px;  /* Increased space */
+      font-size: 1.6rem; /* Made slightly larger */
+      line-height: 1; /* Ensure consistent height */
       text-decoration: none;
       color: #fff;
       transition: transform 0.3s;
       cursor: pointer;
+      /* Prevent selection */
       user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
     .close-modal:hover {
       transform: rotate(90deg);
+    }
+    /* Prevent selection on title and general text */
+    .modal-content h2,
+    .modal-content p:not(.email-suggestion) {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
     }
     .modal-content p {
       font-size: 1.1rem;
       margin: 20px 0;
     }
+    /* Prevent selection on suggestion text, hide caret */
     .email-suggestion {
-      cursor: default; /* Prevent blinking cursor */
+      cursor: default;
       margin-bottom: 30px;
-      user-select: text;
-      caret-color: transparent;
+      caret-color: transparent; /* Hide caret */
+      user-select: none; /* Prevent selection of surrounding text */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
+    /* Allow selection ONLY on the email link, hide caret */
     .email-suggestion a {
-      caret-color: transparent;
+      caret-color: transparent; /* Hide caret */
       text-decoration: underline;
       color: #fff;
+      user-select: text; /* Allow selecting the email address */
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+    }
+
+    /* CONTACT BAR */
+    .contact-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 15, 35, 0.9); /* Slightly darker, more opaque */
+        padding: 15px 20px;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+        z-index: 999; /* Above content, below modal */
+        display: flex;
+        flex-direction: column; /* Stack text and button on small screens */
+        align-items: center;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .contact-bar p {
+        margin: 0 0 10px 0;
+        font-size: 0.95rem;
+        opacity: 0.9;
+        max-width: 600px; /* Limit text width on larger screens */
+    }
+    .contact-bar .contact-button {
+        /* Inherit some styles from .cta-button but adjust padding/size */
+        display: inline-block;
+        background: linear-gradient(90deg, #7a28f7, #2c47de); /* Reversed gradient */
+        color: #fff;
+        padding: 10px 25px; /* Slightly smaller */
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem; /* Slightly smaller */
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3);
+        border: none;
+        cursor: pointer;
+        margin-top: 5px; /* Space from text */
+    }
+    .contact-bar .contact-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(75, 108, 183, 0.5);
+    }
+
+    /* MOBILE ANIMATION KEYFRAMES */
+    @keyframes fadeInSlideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     /* RESPONSIVE MOBILE STYLES */
     @media (max-width: 768px) {
+      body {
+        padding-bottom: 150px; /* Increase bottom padding more for contact bar */
+      }
       .hero {
         padding: 30px;
         flex-direction: column;
@@ -666,30 +749,68 @@
       .section-title {
         font-size: 2rem;
       }
+
+      /* Add mobile entry animations */
+      .feature-card, .timeline-content {
+           animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; /* Added delay */
+           opacity: 0; /* Start hidden for animation */
+      }
+
       .highlight-section {
         padding: 30px;
         flex-direction: column;
         text-align: center;
       }
       .highlight-image { /* Center phone image */
-         margin-bottom: 30px;
+          margin-bottom: 30px;
+          width: 100%; /* Allow full width */
+          display: flex;
+          justify-content: center;
       }
-      .app-image { /* Ensure phone doesn't cause overflow */
-         max-width: 100%;
-         height: auto; /* Adjust height proportionally */
-         min-height: 450px; /* Prevent it becoming too small */
+      .app-image { /* Ensure phone doesn't cause overflow & scales */
+          max-width: 280px; /* Reduce max width slightly more */
+          height: auto; /* Adjust height proportionally */
+          min-height: 480px; /* Adjusted min-height */
+          border-width: 8px; /* Thinner border */
+          /* Existing flex properties center the screen */
       }
       .app-screen {
-         /* Adjust screen position if needed */
+          /* Adjust screen padding and content size for smaller phone */
+           padding: 15px;
+           /* width/height calc is fine with relative position & box-sizing */
       }
+      .app-logo {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 15px;
+          padding: 4px;
+       }
+       .app-logo img {
+           max-width: 75%; max-height: 75%;
+       }
+       .app-screen h3 { font-size: 1.1rem; }
+       .app-screen p { font-size: 0.9rem; margin-bottom: 15px;}
+
+       .scan-circle {
+           width: 100px;
+           height: 100px;
+           margin: 15px 0;
+       }
+       .scan-circle .check { width: 40px; height: 40px;}
+       .scan-circle .check::before { width: 20px; height: 12px; border-width: 3px; transform: rotate(-45deg) translate(3px, -3px);}
+       .scan-circle::before { width: 90px; height: 90px; border-width: 4px; }
+       .scan-circle::after { width: 85px; height: 85px; border-width: 2px; }
+       .scan-status-text { font-size: 1rem; }
+       .progress-bar { width: 80%; max-width: 150px; }
+
 
       .timeline {
         max-width: 100%;
         padding: 20px 10px; /* Adjusted padding */
       }
       .timeline::before {
-         /* Removed timeline line on mobile */
-         display: none;
+          /* Removed timeline line on mobile */
+          display: none;
       }
       .timeline-item {
         width: 100%;
@@ -722,21 +843,46 @@
       .copyright {
         margin-top: 40px; /* Reduce margin */
       }
+
+      .contact-bar {
+          /* Already flex-column, text-align center */
+          padding: 10px 15px; /* Adjust padding */
+      }
+       .contact-bar p {
+           font-size: 0.9rem; /* Slightly smaller text */
+       }
+       .contact-bar .contact-button {
+           padding: 8px 20px;
+           font-size: 0.95rem;
+       }
     }
-     @media (max-width: 480px) {
-        .hero h1 {
-            font-size: 2.2rem; /* Smaller heading on very small screens */
-        }
-        .section-title {
-            font-size: 1.8rem;
-        }
-        .feature-card {
-            padding: 20px;
-        }
-        .app-image {
-            min-height: 400px;
-        }
-     }
+      @media (max-width: 480px) {
+          .hero h1 {
+              font-size: 2.2rem; /* Smaller heading on very small screens */
+          }
+          .section-title {
+              font-size: 1.8rem;
+          }
+          .feature-card {
+              padding: 20px;
+          }
+           .app-image {
+               min-height: 420px; /* Further adjust if needed */
+               max-width: 240px;
+           }
+           .app-screen h3 { font-size: 1rem; }
+           .app-screen p { font-size: 0.8rem; }
+           .scan-circle { width: 80px; height: 80px;}
+           .scan-circle .check { width: 35px; height: 35px;}
+           .scan-circle .check::before { width: 18px; height: 10px;}
+           .scan-circle::before { width: 72px; height: 72px; }
+           .scan-circle::after { width: 68px; height: 68px; }
+           .progress-bar { max-width: 120px; }
+
+           .contact-bar p { font-size: 0.85rem;}
+           .contact-bar .contact-button { font-size: 0.9rem; padding: 7px 18px;}
+           body { padding-bottom: 140px; } /* Adjust padding if bar overlaps */
+      }
   </style>
 </head>
 <body>
@@ -746,6 +892,7 @@
       <p class="tagline">Advanced Android Protection Powered by AI</p>
       <span class="development-badge">Beta Development</span>
     </header>
+
     <section class="hero">
       <div class="hero-content">
         <h1>Next-Generation Android Protection</h1>
@@ -760,6 +907,7 @@
         </div>
       </div>
     </section>
+
     <section class="features">
       <h2 class="section-title">Cutting-Edge Protection Features</h2>
       <div class="feature-grid">
@@ -795,9 +943,10 @@
         </div>
       </div>
     </section>
+
     <section class="highlight-section">
       <div class="highlight-content">
-        <h2 class="section-title">Sophisticated Protection, Simple Interface</h2>
+        <h2 class="section-title" style="text-align: left;">Sophisticated Protection, Simple Interface</h2>
         <p>After 3 years of active development, LAVAIQ combines advanced security technology with a clean, modern design. Enjoy smooth animations and intuitive controls that explain complex security concepts in simple terms.</p>
         <div class="protection-levels">
           <div class="protection-item">
@@ -839,6 +988,7 @@
         </div>
       </div>
     </section>
+
     <section class="cta-section">
       <h2 class="section-title">Coming Soon to Android</h2>
       <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience powerful security combined with a user-friendly design.</p>
@@ -867,6 +1017,7 @@
       </div>
       <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
     </section>
+
     <footer>
       <div class="footer-content">
         <div class="footer-logo">
@@ -880,21 +1031,22 @@
         </div>
       </div>
       <div class="copyright">
-        <p>© 2025 LAVAIQ. All rights reserved.</p>
-      </div>
+        <p>© 2025 LAVAIQ. All rights reserved.</p> </div>
     </footer>
+
     <div id="waitlistModal" class="modal">
       <div class="modal-content">
-        <a href="#" class="close-modal">×</a>
-        <h2>Join Our Waitlist</h2>
+        <a href="#" class="close-modal">×</a> <h2>Join Our Waitlist</h2>
         <p>Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.</p>
-        <p class="email-suggestion" tabindex="-1">
-          Alternatively, email us directly at
-          <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=Waitlist">lavaiq@outlook.com</a>
-        </p>
+        <p class="email-suggestion" tabindex="-1"> Alternatively, email us directly at
+          <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=I'd like to join the LAVAIQ waitlist!">lavaiq@outlook.com</a> </p>
         <p>Thank you for your interest!</p>
       </div>
     </div>
+  </div> <div class="contact-bar">
+      <p>Support doesn't have to be a hassle, ours isn't. Try it out. Contact us below if you have any project or personal questions.</p>
+      <a href="mailto:lavaiq@outlook.com?subject=Project/Personal Question&body=Hi LAVAIQ Team," class="contact-button">Contact Us</a>
   </div>
+
 </body>
 </html>
