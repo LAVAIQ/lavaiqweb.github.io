@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAVAIQ - Next Generation Android Antivirus</title>
+  <title data-key="title">LAVAIQ - Next Generation Android Antivirus</title>
   <meta name="description" content="LAVAIQ is an advanced Android antivirus app powered by AI. Experience multi-layer protection and cutting-edge technology.">
   <meta name="keywords" content="Android antivirus, AI security, malware protection, zero-day, cloud intelligence, app security, privacy protection">
   <meta property="og:title" content="LAVAIQ - Next Generation Android Antivirus">
@@ -109,7 +109,7 @@
       font-size: 1.1rem;
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 15px rgba(75, 108, 183, 0.4);
-      border: 2px solid white; /* Added white stroke */
+      border: 2px solid white;
       cursor: pointer;
     }
     .cta-button:hover {
@@ -642,9 +642,6 @@
       transition: transform 0.3s;
       cursor: pointer;
       user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
     }
     .close-modal:hover {
       transform: rotate(90deg);
@@ -652,9 +649,6 @@
     .modal-content h2,
     .modal-content p:not(.email-suggestion) {
       user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
     }
     .modal-content p {
       font-size: 1.1rem;
@@ -663,20 +657,12 @@
     .email-suggestion {
       cursor: default;
       margin-bottom: 30px;
-      caret-color: transparent;
       user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
     }
     .email-suggestion a {
-      caret-color: transparent;
       text-decoration: underline;
       color: #fff;
       user-select: text;
-      -webkit-user-select: text;
-      -moz-user-select: text;
-      -ms-user-select: text;
     }
     /* CONTACT BAR */
     .contact-bar {
@@ -711,13 +697,44 @@
       font-size: 1rem;
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3);
-      border: 2px solid white; /* Added white stroke */
+      border: 2px solid white;
       cursor: pointer;
       margin-top: 5px;
     }
     .contact-bar .contact-button:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(75, 108, 183, 0.5);
+    }
+    /* LANGUAGE SELECTOR */
+    .language-selector {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(10, 15, 35, 0.8);
+      border-radius: 30px;
+      padding: 10px 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+    .language-selector button {
+      background: transparent;
+      border: none;
+      color: #f5f5f5;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .language-selector button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+    .language-selector button.active {
+      background: rgba(255, 255, 255, 0.4);
     }
     /* MOBILE ANIMATION KEYFRAMES */
     @keyframes fadeInSlideUp {
@@ -784,15 +801,22 @@
   <div class="container">
     <header>
       <img src="LAVAIQLogoWhite.png" alt="LAVAIQ Logo" class="logo">
-      <p class="tagline">Advanced Android protection powered by AI — developed independently by a dedicated student developer.</p>
-      <span class="development-badge">Beta Development</span>
+      <p class="tagline" data-key="headerTagline">
+        Advanced Android protection powered by AI — developed independently by a dedicated student developer.
+      </p>
+      <span class="development-badge" data-key="headerBadge">Beta Development</span>
     </header>
 
     <section class="hero">
       <div class="hero-content">
-        <h1>Next-Generation Android Protection</h1>
-        <p>LAVAIQ is an advanced Android antivirus that utilizes artificial intelligence to deliver multi-layered security against malware and cyber threats. Our modern design combines powerful protection with a user-friendly interface.</p>
-        <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
+        <h1 data-key="heroHeading">Next-Generation Android Protection</h1>
+        <p data-key="heroParagraph">
+          LAVAIQ is an advanced Android antivirus that utilizes artificial intelligence to deliver multi-layered security against malware and cyber threats. Our modern design combines powerful protection with a user-friendly interface.
+        </p>
+        <a href="#waitlistModal" class="cta-button waitlist-btn">
+          <span data-key="heroButton">Join the Waitlist</span>
+          <span class="coming-soon" data-key="heroComingSoon">Coming Soon</span>
+        </a>
       </div>
       <div class="hero-image">
         <div class="shield-icon">
@@ -804,61 +828,77 @@
     </section>
 
     <section class="features">
-      <h2 class="section-title">Cutting-Edge Protection Features</h2>
+      <h2 class="section-title" data-key="featuresTitle">Cutting-Edge Protection Features</h2>
       <div class="feature-grid">
         <div class="feature-card">
           <div class="feature-icon">🧠</div>
-          <h3 class="feature-title">AI-Powered Analysis</h3>
-          <p>Our artificial intelligence engine continuously learns and adapts to new threats, providing advanced protection without requiring full retraining.</p>
+          <h3 class="feature-title" data-key="feature1Title">AI-Powered Analysis</h3>
+          <p data-key="feature1Paragraph">
+            Our artificial intelligence engine continuously learns and adapts to new threats, providing advanced protection without requiring full retraining.
+          </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📅</div>
-          <h3 class="feature-title">Zero-Day Protection</h3>
-          <p>LAVAIQ detects previously unknown malware threats in real-time using cutting-edge algorithms.</p>
+          <h3 class="feature-title" data-key="feature2Title">Zero-Day Protection</h3>
+          <p data-key="feature2Paragraph">
+            LAVAIQ detects previously unknown malware threats in real-time using cutting-edge algorithms.
+          </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
-          <h3 class="feature-title">Multi-Layer Security</h3>
-          <p>Comprehensive protection that combines AI, signature analysis, heuristics, and anomaly detection.</p>
+          <h3 class="feature-title" data-key="feature3Title">Multi-Layer Security</h3>
+          <p data-key="feature3Paragraph">
+            Comprehensive protection that combines AI, signature analysis, heuristics, and anomaly detection.
+          </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">☁️</div>
-          <h3 class="feature-title">Cloud Intelligence</h3>
-          <p>Instant threat intelligence sharing via our secure cloud backend.</p>
+          <h3 class="feature-title" data-key="feature4Title">Cloud Intelligence</h3>
+          <p data-key="feature4Paragraph">
+            Instant threat intelligence sharing via our secure cloud backend.
+          </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📱</div>
-          <h3 class="feature-title">Modern App UI</h3>
-          <p>An intuitive interface that is as visually appealing as it is user-friendly.</p>
+          <h3 class="feature-title" data-key="feature5Title">Modern App UI</h3>
+          <p data-key="feature5Paragraph">
+            An intuitive interface that is as visually appealing as it is user-friendly.
+          </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
-          <h3 class="feature-title">Privacy Protection</h3>
-          <p>We safeguard your personal data with strict privacy measures and advanced security protocols.</p>
+          <h3 class="feature-title" data-key="feature6Title">Privacy Protection</h3>
+          <p data-key="feature6Paragraph">
+            We safeguard your personal data with strict privacy measures and advanced security protocols.
+          </p>
         </div>
       </div>
     </section>
 
     <section class="highlight-section">
       <div class="highlight-content">
-        <h2 class="section-title" style="text-align: left;">Sophisticated Protection, Simple Interface</h2>
-        <p>After 3 years of active development, LAVAIQ combines advanced security technology with a clean, modern design. Enjoy smooth animations and intuitive controls that explain complex security concepts in simple terms.</p>
+        <h2 class="section-title" data-key="highlightTitle" style="text-align: left;">
+          Sophisticated Protection, Simple Interface
+        </h2>
+        <p data-key="highlightParagraph">
+          After 3 years of active development, LAVAIQ combines advanced security technology with a clean, modern design. Enjoy smooth animations and intuitive controls that explain complex security concepts in simple terms.
+        </p>
         <div class="protection-levels">
           <div class="protection-item">
             <div class="protection-icon">✓</div>
-            <p>User-friendly explanations of detected threats</p>
+            <p data-key="protection1">User-friendly explanations of detected threats</p>
           </div>
           <div class="protection-item">
             <div class="protection-icon">✓</div>
-            <p>Advanced AI trained on thousands of parameters</p>
+            <p data-key="protection2">Advanced AI trained on thousands of parameters</p>
           </div>
           <div class="protection-item">
             <div class="protection-icon">✓</div>
-            <p>Lightweight design that keeps your device fast</p>
+            <p data-key="protection3">Lightweight design that keeps your device fast</p>
           </div>
           <div class="protection-item">
             <div class="protection-icon">✓</div>
-            <p>Seven original innovations in cybersecurity</p>
+            <p data-key="protection4">Seven original innovations in cybersecurity</p>
           </div>
         </div>
       </div>
@@ -885,41 +925,50 @@
     </section>
 
     <section class="cta-section">
-      <h2 class="section-title">Coming Soon to Android</h2>
-      <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience powerful security combined with a user-friendly design.</p>
+      <h2 class="section-title" data-key="ctaTitle">Coming Soon to Android</h2>
+      <p data-key="ctaParagraph" style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">
+        LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience powerful security combined with a user-friendly design.
+      </p>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-content">
             <div class="timeline-date">2022-2024</div>
-            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Research & Development</h3>
-            <p>Three years of intensive AI and cybersecurity innovation.</p>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;" data-key="timeline1Title">Research & Development</h3>
+            <p data-key="timeline1Paragraph">Three years of intensive AI and cybersecurity innovation.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
             <div class="timeline-date">Current Stage</div>
-            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Beta Testing</h3>
-            <p>Final refinements and optimization underway.</p>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;" data-key="timeline2Title">Beta Testing</h3>
+            <p data-key="timeline2Paragraph">Final refinements and optimization underway.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
             <div class="timeline-date">Coming Soon</div>
-            <h3 style="color: #e0e0ff; margin-bottom: 10px;">Public Release</h3>
-            <p>Launch on the Google Play Store is imminent.</p>
+            <h3 style="color: #e0e0ff; margin-bottom: 10px;" data-key="timeline3Title">Public Release</h3>
+            <p data-key="timeline3Paragraph">Launch on the Google Play Store is imminent.</p>
           </div>
         </div>
       </div>
-      <a href="#waitlistModal" class="cta-button waitlist-btn">Join the Waitlist <span class="coming-soon">Coming Soon</span></a>
+      <a href="#waitlistModal" class="cta-button waitlist-btn">
+        <span data-key="heroButton2">Join the Waitlist</span>
+        <span class="coming-soon" data-key="heroComingSoon2">Coming Soon</span>
+      </a>
     </section>
 
-    <!-- New Contact Section -->
+    <!-- Contact Section -->
     <section class="contact-section">
-      <h2 class="section-title">Support Made Easy</h2>
+      <h2 class="section-title" data-key="contactTitle">Support Made Easy</h2>
       <div class="contact-card">
-        <p>Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.</p>
-        <p>Feel free to reach out with any project inquiries, personal questions regarding the developer, or collaboration offers.</p>
-        <a href="mailto:lavaiq@outlook.com" class="cta-button">Contact Us</a>
+        <p data-key="contactParagraph1">
+          Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.
+        </p>
+        <p data-key="contactParagraph2">
+          Feel free to reach out with any project inquiries, personal questions regarding the developer, or collaboration offers.
+        </p>
+        <a href="mailto:lavaiq@outlook.com" class="cta-button" data-key="contactButton">Contact Us</a>
       </div>
     </section>
 
@@ -927,34 +976,191 @@
       <div class="footer-content">
         <div class="footer-logo">
           <img src="LAVAIQLogoWhite.png" alt="LAVAIQ Logo" class="footer-logo-img" />
-          <p>Advanced Android protection powered by AI, now in final stages of development.</p>
+          <p data-key="footerLeft">Advanced Android protection powered by AI, now in final stages of development.</p>
         </div>
         <div class="footer-contact">
-          <h3 class="footer-title">Contact Us</h3>
-          <p>Questions or interest in our beta program? Get in touch with our development team.</p>
+          <h3 class="footer-title" data-key="footerContactTitle">Contact Us</h3>
+          <p data-key="footerContactParagraph">
+            Questions or interest in our beta program? Get in touch with our development team.
+          </p>
           <a href="mailto:lavaiq@outlook.com" class="footer-email">lavaiq@outlook.com</a>
         </div>
       </div>
       <div class="copyright">
-        <p>© 2025 LAVAIQ. All rights reserved.</p>
+        <p data-key="copyright">© 2025 LAVAIQ. All rights reserved.</p>
       </div>
     </footer>
 
     <div id="waitlistModal" class="modal">
       <div class="modal-content">
         <a href="#" class="close-modal">×</a>
-        <h2>Join Our Waitlist</h2>
-        <p>Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.</p>
-        <p class="email-suggestion" tabindex="-1"> Alternatively, email us directly at
+        <h2 data-key="modalTitle">Join Our Waitlist</h2>
+        <p data-key="modalParagraph">
+          Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.
+        </p>
+        <p class="email-suggestion" tabindex="-1" data-key="modalAlt">
+          Alternatively, email us directly at
           <a href="mailto:lavaiq@outlook.com?subject=Waitlist&body=I'd like to join the LAVAIQ waitlist!">lavaiq@outlook.com</a>
         </p>
-        <p>Thank you for your interest!</p>
+        <p data-key="modalThankyou">Thank you for your interest!</p>
       </div>
     </div>
   </div>
   <div class="contact-bar">
-    <p>Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.</p>
-    <a href="mailto:lavaiq@outlook.com?subject=Project/Personal Question&body=Hi LAVAIQ Team," class="contact-button">Contact Us</a>
+    <p data-key="contactBarText">
+      Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.
+    </p>
+    <a href="mailto:lavaiq@outlook.com?subject=Project/Personal Question&body=Hi LAVAIQ Team," class="contact-button" data-key="contactBarButton">Contact Us</a>
   </div>
+
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <button id="btn-en">English</button>
+    <button id="btn-sk">Slovenčina</button>
+  </div>
+
+  <script>
+    // Translation mappings
+    const translations = {
+      en: {
+        title: "LAVAIQ - Next Generation Android Antivirus",
+        headerTagline: "Advanced Android protection powered by AI — developed independently by a dedicated student developer.",
+        headerBadge: "Beta Development",
+        heroHeading: "Next-Generation Android Protection",
+        heroParagraph: "LAVAIQ is an advanced Android antivirus that utilizes artificial intelligence to deliver multi-layered security against malware and cyber threats. Our modern design combines powerful protection with a user-friendly interface.",
+        heroButton: "Join the Waitlist",
+        heroComingSoon: "Coming Soon",
+        heroButton2: "Join the Waitlist",
+        heroComingSoon2: "Coming Soon",
+        featuresTitle: "Cutting-Edge Protection Features",
+        feature1Title: "AI-Powered Analysis",
+        feature1Paragraph: "Our artificial intelligence engine continuously learns and adapts to new threats, providing advanced protection without requiring full retraining.",
+        feature2Title: "Zero-Day Protection",
+        feature2Paragraph: "LAVAIQ detects previously unknown malware threats in real-time using cutting-edge algorithms.",
+        feature3Title: "Multi-Layer Security",
+        feature3Paragraph: "Comprehensive protection that combines AI, signature analysis, heuristics, and anomaly detection.",
+        feature4Title: "Cloud Intelligence",
+        feature4Paragraph: "Instant threat intelligence sharing via our secure cloud backend.",
+        feature5Title: "Modern App UI",
+        feature5Paragraph: "An intuitive interface that is as visually appealing as it is user-friendly.",
+        feature6Title: "Privacy Protection",
+        feature6Paragraph: "We safeguard your personal data with strict privacy measures and advanced security protocols.",
+        highlightTitle: "Sophisticated Protection, Simple Interface",
+        highlightParagraph: "After 3 years of active development, LAVAIQ combines advanced security technology with a clean, modern design. Enjoy smooth animations and intuitive controls that explain complex security concepts in simple terms.",
+        protection1: "User-friendly explanations of detected threats",
+        protection2: "Advanced AI trained on thousands of parameters",
+        protection3: "Lightweight design that keeps your device fast",
+        protection4: "Seven original innovations in cybersecurity",
+        ctaTitle: "Coming Soon to Android",
+        ctaParagraph: "LAVAIQ is in the final stages of development and will be available soon. Join our waitlist to be the first to experience powerful security combined with a user-friendly design.",
+        timeline1Title: "Research & Development",
+        timeline1Paragraph: "Three years of intensive AI and cybersecurity innovation.",
+        timeline2Title: "Beta Testing",
+        timeline2Paragraph: "Final refinements and optimization underway.",
+        timeline3Title: "Public Release",
+        timeline3Paragraph: "Launch on the Google Play Store is imminent.",
+        contactTitle: "Support Made Easy",
+        contactParagraph1: "Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.",
+        contactParagraph2: "Feel free to reach out with any project inquiries, personal questions regarding the developer, or collaboration offers.",
+        contactButton: "Contact Us",
+        footerLeft: "Advanced Android protection powered by AI, now in final stages of development.",
+        footerContactTitle: "Contact Us",
+        footerContactParagraph: "Questions or interest in our beta program? Get in touch with our development team.",
+        copyright: "© 2025 LAVAIQ. All rights reserved.",
+        modalTitle: "Join Our Waitlist",
+        modalParagraph: "Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.",
+        modalAlt: "Alternatively, email us directly at",
+        modalThankyou: "Thank you for your interest!",
+        contactBarText: "Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.",
+        contactBarButton: "Contact Us"
+      },
+      sk: {
+        title: "LAVAIQ - Antivirus pre Android novej generácie",
+        headerTagline: "Pokročilá ochrana Androidu poháňaná umelou inteligenciou — vyvinutá nezávislým študentom.",
+        headerBadge: "Beta Vývoj",
+        heroHeading: "Ochrana Androidu novej generácie",
+        heroParagraph: "LAVAIQ je pokročilý antivírus pre Android, ktorý využíva umelú inteligenciu na poskytovanie viacvrstvovej ochrany pred malvérom a kybernetickými hrozbami. Náš moderný dizajn spája silnú ochranu s používateľsky prívetivým rozhraním.",
+        heroButton: "Pridať sa do čakacej listiny",
+        heroComingSoon: "Prichádza čoskoro",
+        heroButton2: "Pridať sa do čakacej listiny",
+        heroComingSoon2: "Prichádza čoskoro",
+        featuresTitle: "Funkcie špičkovej ochrany",
+        feature1Title: "Analýza poháňaná AI",
+        feature1Paragraph: "Náš AI motor sa neustále učí a prispôsobuje novým hrozbám, poskytujúc pokročilú ochranu bez potreby úplného preškolenia.",
+        feature2Title: "Ochrana proti neznámym hrozbám",
+        feature2Paragraph: "LAVAIQ deteguje doteraz neznáme malware hrozby v reálnom čase pomocou najmodernejších algoritmov.",
+        feature3Title: "Viacvrstvová bezpečnosť",
+        feature3Paragraph: "Komplexná ochrana, ktorá spája AI, analýzu signatúr, heuristiky a detekciu anomálií.",
+        feature4Title: "Cloudová inteligencia",
+        feature4Paragraph: "Okamžité zdieľanie informácií o hrozbách cez náš bezpečný cloudový backend.",
+        feature5Title: "Moderné používateľské rozhranie",
+        feature5Paragraph: "Intuitívne rozhranie, ktoré je rovnako vizuálne príťažlivé, ako je používateľsky prívetivé.",
+        feature6Title: "Ochrana súkromia",
+        feature6Paragraph: "Chránieme vaše osobné údaje prísnymi opatreniami na ochranu súkromia a pokročilými bezpečnostnými protokolmi.",
+        highlightTitle: "Zložitejšia ochrana, jednoduché rozhranie",
+        highlightParagraph: "Po 3 rokoch intenzívneho vývoja spája LAVAIQ pokročilú bezpečnostnú technológiu s čistým, moderným dizajnom. Užite si plynulé animácie a intuitívne ovládanie, ktoré vysvetľuje zložité bezpečnostné koncepty jednoducho.",
+        protection1: "Používateľsky prívetivé vysvetlenia zistených hrozieb",
+        protection2: "Pokročilá AI trénovaná na tisícoch parametrov",
+        protection3: "Ľahký dizajn, ktorý udržiava vaše zariadenie rýchle",
+        protection4: "Siedmich originálnych inovácií v kybernetickej bezpečnosti",
+        ctaTitle: "Prichádza čoskoro pre Android",
+        ctaParagraph: "LAVAIQ je vo finálnej fáze vývoja a čoskoro bude k dispozícii. Pridajte sa do našej čakacej listiny a buďte medzi prvými, ktorí zažijú silnú ochranu spojenú s používateľsky prívetivým dizajnom.",
+        timeline1Title: "Výskum a vývoj",
+        timeline1Paragraph: "Tri roky intenzívnej AI a kybernetickej inovácií.",
+        timeline2Title: "Beta testovanie",
+        timeline2Paragraph: "Posledné úpravy a optimalizácia prebiehajú.",
+        timeline3Title: "Verejné vydanie",
+        timeline3Paragraph: "Spustenie na Google Play Store je neodvratné.",
+        contactTitle: "Podpora bez starostí",
+        contactParagraph1: "Podpora nemusí byť zložité, naša nie je. Vyskúšajte ju. Kontaktujte nás, ak máte akékoľvek otázky týkajúce sa projektov alebo osobné otázky.",
+        contactParagraph2: "Neváhajte nás kontaktovať s akýmikoľvek otázkami o projektoch, osobnými otázkami ohľadom vývojára alebo ponukami na spoluprácu.",
+        contactButton: "Kontaktujte nás",
+        footerLeft: "Pokročilá ochrana Androidu poháňaná AI, teraz vo finálnej fáze vývoja.",
+        footerContactTitle: "Kontaktujte nás",
+        footerContactParagraph: "Máte otázky alebo záujem o náš beta program? Kontaktujte náš vývojový tím.",
+        copyright: "© 2025 LAVAIQ. Všetky práva vyhradené.",
+        modalTitle: "Pridajte sa do čakacej listiny",
+        modalParagraph: "Buďte medzi prvými, kto sa dozvie o spustení LAVAIQ! Zadajte svoj email nižšie a pridajte sa do čakacej listiny.",
+        modalAlt: "Prípadne nás kontaktujte priamo na",
+        modalThankyou: "Ďakujeme za váš záujem!",
+        contactBarText: "Podpora nemusí byť zložité, naša nie je. Vyskúšajte ju. Kontaktujte nás, ak máte akékoľvek otázky týkajúce sa projektov alebo osobné otázky.",
+        contactBarButton: "Kontaktujte nás"
+      }
+    };
+
+    // Update text for all elements with a data-key attribute
+    function updateLanguage(lang) {
+      // Update document title first
+      document.querySelector("title").textContent = translations[lang].title;
+      // Loop through all elements that have the data-key attribute
+      document.querySelectorAll('[data-key]').forEach(function(element) {
+        let key = element.getAttribute('data-key');
+        if(translations[lang][key]){
+          element.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    // Auto-detect language: use stored preference if exists; otherwise, check browser language.
+    let currentLang = localStorage.getItem('lang') || (navigator.language.toLowerCase().startsWith('sk') ? 'sk' : 'en');
+    updateLanguage(currentLang);
+    document.getElementById('btn-' + currentLang).classList.add('active');
+
+    // Add event listeners for language buttons
+    document.getElementById('btn-en').addEventListener('click', () => {
+      currentLang = 'en';
+      localStorage.setItem('lang', 'en');
+      updateLanguage('en');
+      document.getElementById('btn-en').classList.add('active');
+      document.getElementById('btn-sk').classList.remove('active');
+    });
+    document.getElementById('btn-sk').addEventListener('click', () => {
+      currentLang = 'sk';
+      localStorage.setItem('lang', 'sk');
+      updateLanguage('sk');
+      document.getElementById('btn-sk').classList.add('active');
+      document.getElementById('btn-en').classList.remove('active');
+    });
+  </script>
 </body>
 </html>
