@@ -22,7 +22,7 @@
       line-height: 1.6;
       min-height: 100vh;
       margin: 0;
-      padding-bottom: 120px;
+      padding-bottom: 120px; /* Adjusted padding-bottom if needed, depends on final layout */
       box-sizing: border-box;
       font-family: sans-serif;
       cursor: default;
@@ -664,53 +664,15 @@
       color: #fff;
       user-select: text;
     }
-    /* CONTACT BAR */
-    .contact-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(10, 15, 35, 0.9);
-      padding: 15px 20px;
-      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .contact-bar p {
-      margin: 0 0 10px 0;
-      font-size: 0.95rem;
-      opacity: 0.9;
-      max-width: 600px;
-    }
-    .contact-bar .contact-button {
-      display: inline-block;
-      background: linear-gradient(90deg, #7a28f7, #2c47de);
-      color: #fff;
-      padding: 10px 25px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3);
-      border: 2px solid white;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-    .contact-bar .contact-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(75, 108, 183, 0.5);
-    }
+    /* CONTACT BAR - Removed */
+    /* .contact-bar { ... } - Styles removed as the element is gone */
+
     /* LANGUAGE SELECTOR */
     .language-selector {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: rgba(10, 15, 35, 0.8);
+      background: transparent; /* Removed background */
       border-radius: 30px;
       padding: 10px 20px;
       display: flex;
@@ -718,6 +680,7 @@
       align-items: center;
       z-index: 1000;
       transition: transform 0.3s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Added shadow */
     }
     .language-selector button {
       background: transparent;
@@ -728,6 +691,7 @@
       padding: 5px 10px;
       border-radius: 20px;
       transition: background 0.3s, transform 0.3s;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Optional: Add text shadow for better readability */
     }
     .language-selector button:hover {
       background: rgba(255, 255, 255, 0.2);
@@ -743,7 +707,7 @@
     }
     /* RESPONSIVE MOBILE STYLES */
     @media (max-width: 768px) {
-      body { padding-bottom: 150px; }
+      body { padding-bottom: 80px; /* Adjusted padding as contact bar is removed */ }
       .hero { padding: 30px; flex-direction: column; }
       .hero-content { padding-right: 0; margin-bottom: 30px; text-align: center; }
       .hero-image { margin-bottom: 20px; }
@@ -774,9 +738,7 @@
       .footer-content { flex-direction: column; align-items: center; text-align: center; max-width: 100%; gap: 20px; }
       .footer-logo, .footer-contact { width: 90%; min-width: unset; padding: 0 10px; margin-bottom: 10px; }
       .copyright { margin-top: 40px; }
-      .contact-bar { padding: 10px 15px; }
-      .contact-bar p { font-size: 0.9rem; }
-      .contact-bar .contact-button { padding: 8px 20px; font-size: 0.95rem; }
+      /* Contact bar mobile styles removed */
     }
     @media (max-width: 480px) {
       .hero h1 { font-size: 2.2rem; }
@@ -791,9 +753,17 @@
       .scan-circle::before { width: 72px; height: 72px; }
       .scan-circle::after { width: 68px; height: 68px; }
       .progress-bar { max-width: 120px; }
-      .contact-bar p { font-size: 0.85rem; }
-      .contact-bar .contact-button { font-size: 0.9rem; padding: 7px 18px; }
-      body { padding-bottom: 140px; }
+      /* Contact bar mobile styles removed */
+      body { padding-bottom: 80px; /* Adjusted padding */ }
+      .language-selector {
+          padding: 8px 15px; /* Slightly smaller padding */
+          bottom: 15px;
+          right: 15px;
+      }
+      .language-selector button {
+          font-size: 0.9rem;
+          padding: 4px 8px;
+      }
     }
   </style>
 </head>
@@ -958,7 +928,6 @@
       </a>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact-section">
       <h2 class="section-title" data-key="contactTitle">Support Made Easy</h2>
       <div class="contact-card">
@@ -1006,14 +975,7 @@
       </div>
     </div>
   </div>
-  <div class="contact-bar">
-    <p data-key="contactBarText">
-      Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.
-    </p>
-    <a href="mailto:lavaiq@outlook.com?subject=Project/Personal Question&body=Hi LAVAIQ Team," class="contact-button" data-key="contactBarButton">Contact Us</a>
-  </div>
 
-  <!-- Language Selector -->
   <div class="language-selector">
     <button id="btn-en">English</button>
     <button id="btn-sk">Slovenčina</button>
@@ -1071,8 +1033,8 @@
         modalParagraph: "Be the first to know when LAVAIQ launches! Enter your email below to join our waitlist.",
         modalAlt: "Alternatively, email us directly at",
         modalThankyou: "Thank you for your interest!",
-        contactBarText: "Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.",
-        contactBarButton: "Contact Us"
+        contactBarText: "Support doesn’t have to be a hassle, ours isn’t. Try it out. Contact us below if you have any project or personal questions.", // Kept in case needed elsewhere, but not used by the removed bar
+        contactBarButton: "Contact Us" // Kept in case needed elsewhere, but not used by the removed bar
       },
       sk: {
         title: "LAVAIQ - Antivirus pre Android novej generácie",
@@ -1123,8 +1085,8 @@
         modalParagraph: "Buďte medzi prvými, kto sa dozvie o spustení LAVAIQ! Zadajte svoj email nižšie a pridajte sa do čakacej listiny.",
         modalAlt: "Prípadne ma kontaktujte priamo na",
         modalThankyou: "Ďakujeme za váš záujem!",
-        contactBarText: "Podpora nemusí byť zložitá, podpora LAVAIQ nie je. Vyskúšajte ju. Kontaktujte ma, ak máte akékoľvek otázky týkajúce sa projektov alebo osobné otázky.",
-        contactBarButton: "Kontaktujte LAVAIQ"
+        contactBarText: "Podpora nemusí byť zložitá, podpora LAVAIQ nie je. Vyskúšajte ju. Kontaktujte ma, ak máte akékoľvek otázky týkajúce sa projektov alebo osobné otázky.", // Kept in case needed elsewhere, but not used by the removed bar
+        contactBarButton: "Kontaktujte LAVAIQ" // Kept in case needed elsewhere, but not used by the removed bar
       }
     };
 
